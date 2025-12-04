@@ -5,6 +5,7 @@ public class FirstPersonController : MonoBehaviour
     public float moveSpeed = 5f;
     public float mouseSensitivity = 2f;
     public float gravity = -9.81f;
+    public float scale = 1f;
 
     private CharacterController controller;
     private Vector3 velocity;
