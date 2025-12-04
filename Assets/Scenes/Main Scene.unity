@@ -258,7 +258,6 @@ GameObject:
   - component: {fileID: 456324110}
   - component: {fileID: 456324109}
   - component: {fileID: 456324107}
-  - component: {fileID: 456324113}
   - component: {fileID: 456324112}
   m_Layer: 0
   m_Name: Player
@@ -356,14 +355,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456324105}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.9970645, z: -0, w: 0.076566756}
-  m_LocalPosition: {x: 0.28688, y: 2.48, z: 13.17}
+  m_LocalRotation: {x: -0, y: 0.12773772, z: -0, w: -0.99180806}
+  m_LocalPosition: {x: -0.23649709, y: 2.48, z: 12.174206}
   m_LocalScale: {x: 1.7896, y: 1.7896, z: 1.7896}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 961739753}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 171.218, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 345.322, z: 0}
 --- !u!114 &456324112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,21 +372,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 456324105}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 441b198e5761570428f6dcfba9bcc2e7, type: 3}
+  m_Script: {fileID: 11500000, guid: f56914f3eb3a7974c923f731079b1c23, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
---- !u!114 &456324113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 456324105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 441b198e5761570428f6dcfba9bcc2e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  m_EditorClassIdentifier: Assembly-CSharp::FirstPersonController
+  moveSpeed: 5
+  mouseSensitivity: 2
+  gravity: -9.81
 --- !u!1 &961739749
 GameObject:
   m_ObjectHideFlags: 0

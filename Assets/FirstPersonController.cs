@@ -12,10 +12,12 @@ public class FirstPersonController : MonoBehaviour
 
     void Start()
     {
-        controller = GetComponent();
+        controller = GetComponent<CharacterController>();
         cameraTransform = Camera.main.transform;
         cameraTransform.position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
         cameraTransform.parent = transform; // Attach camera to player
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void Update()
