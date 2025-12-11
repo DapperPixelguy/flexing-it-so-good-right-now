@@ -5,8 +5,10 @@ public class FirstPersonController : MonoBehaviour
     public float moveSpeed = 5f;
     public float mouseSensitivity = 2f;
     public float gravity = -9.81f;
-    public float scaleSpeed = 5f;   
+    public float scaleSpeed = 5f;
 
+
+    private bool clean = false;
     private float targetScale;
     private float xRotation = 0f;
 
@@ -73,6 +75,25 @@ public class FirstPersonController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             targetScale -= 0.5f;            
+        }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            Vector3 pos = transform.position;
+            if (clean)
+            {
+                pos.y = -4.173007f;
+                clean = false;
+            }else
+            {
+                pos.y = -18.31867f;
+                clean = true;
+            }
+                // Set Y to exactly 5
+                controller.enabled = false;  // Temporarily disable CharacterController
+            transform.position = pos;    // Move object
+            controller.enabled = true;   // Re-enable CharacterController
+            velocity.y = 0f;             // Reset vertical speed to avoid instant falling
         }
 
         float currentScale = transform.localScale.x;
