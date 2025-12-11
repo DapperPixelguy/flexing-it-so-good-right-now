@@ -16,7 +16,7 @@ public class FirstPersonController : MonoBehaviour
 
     void Start()
     {
-        targetScale = transform.localScale.x;
+        targetScale = Mathf.Clamp(transform.localScale.x, 0.5f, 5f);
         controller = GetComponent<CharacterController>();
         cameraTransform = Camera.main.transform;
         cameraTransform.position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
@@ -28,13 +28,7 @@ public class FirstPersonController : MonoBehaviour
 
     void Update()
     {
-        // Player movement
-        float moveX = Input.GetAxis("Horizontal") * moveSpeed;
-        float moveZ = Input.GetAxis("Vertical") * moveSpeed;
-        Vector3 move = transform.right * moveX + transform.forward * moveZ;
-
-        controller.Move(move * Time.deltaTime);
-
+      
         // Allow jumping
 
         if (controller.isGrounded && Input.GetKey(KeyCode.Space))
@@ -43,6 +37,14 @@ public class FirstPersonController : MonoBehaviour
             velocity.y += 10;
             print(velocity);
         }
+
+        // Player movement
+        float moveX = Input.GetAxis("Horizontal") * moveSpeed;
+        float moveZ = Input.GetAxis("Vertical") * moveSpeed;
+        Vector3 move = transform.right * moveX + transform.forward * moveZ;
+
+        controller.Move(move * Time.deltaTime);
+
 
         // Apply gravity
         if (controller.isGrounded && velocity.y < 0)
