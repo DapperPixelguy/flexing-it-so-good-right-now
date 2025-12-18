@@ -11,7 +11,9 @@ public class ChangeScale : MonoBehaviour
 
     void Start()
     {
-        targetScale = Mathf.Clamp(transform.localScale.x, 0.5f, 3.5f);
+        // This is 2 by default! This means you can go lower by 3 steps, and up by 3 steps.
+        targetScale = Mathf.Clamp(transform.localScale.x, 0.5f, 3.5f); 
+        movement = GetComponent<FirstPersonController>();
     }
 
     // Update is called once per frame
@@ -19,13 +21,24 @@ public class ChangeScale : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            targetScale = Mathf.Clamp(targetScale + 0.5f, 0.5f, 3.5f);
-
+            print("CASE 1 GRAVITY CHANGE");
+            targetScale = Mathf.Clamp(targetScale + 0.5f, 0.5f, 3f);
+            movement.moveSpeed = Mathf.Clamp(movement.moveSpeed + 2f, 2f, 12f);            
+            movement.jumpStrength = Mathf.Clamp(movement.jumpStrength + 2f, 2f, 10f);
+            movement.gravity = Mathf.Clamp(movement.gravity - 4f, -28f, -8f);
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            targetScale = Mathf.Clamp(targetScale - 0.5f, 0.5f, 3.5f);
+            print("CASE 2 GRAVITY CHANGE");
+            targetScale = Mathf.Clamp(targetScale - 0.5f, 0.5f, 3f);
+            movement.moveSpeed = Mathf.Clamp(movement.moveSpeed - 2f, 2f, 12f);
+
+            if (targetScale <= 2f)
+            {
+                movement.jumpStrength = Mathf.Clamp(movement.jumpStrength - 2f, 4f, 10f);
+            }              
+            movement.gravity = Mathf.Clamp(movement.gravity + 4f, -28f, -8f);
         }
 
         float currentScale = transform.localScale.x;
