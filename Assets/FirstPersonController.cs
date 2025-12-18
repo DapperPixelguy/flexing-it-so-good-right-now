@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FirstPersonController : MonoBehaviour
@@ -5,10 +6,10 @@ public class FirstPersonController : MonoBehaviour
     public float moveSpeed = 5f;
     public float mouseSensitivity = 2f;
     public float gravity = -9.81f;
-    public float scaleSpeed = 5f;
+
     public Vector3 velocity { get; set; }
 
-    public float targetScale;
+
     private float xRotation = 0f;
 
     public CharacterController controller;
@@ -16,7 +17,6 @@ public class FirstPersonController : MonoBehaviour
 
     void Start()
     {
-        targetScale = Mathf.Clamp(transform.localScale.x, 0.5f, 3.5f);
         controller = GetComponent<CharacterController>();
         cameraTransform = Camera.main.transform;
         cameraTransform.position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
@@ -66,24 +66,6 @@ public class FirstPersonController : MonoBehaviour
 
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-        transform.Rotate(Vector3.up * mouseX);
-
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            targetScale = Mathf.Clamp(targetScale + 0.5f, 0.5f, 3.5f);
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            targetScale = Mathf.Clamp(targetScale - 0.5f, 0.5f, 3.5f);
-        }
-
-        float currentScale = transform.localScale.x;
-        float newScale = Mathf.Lerp(currentScale, targetScale, scaleSpeed * Time.deltaTime);
-
-        transform.localScale = Vector3.one * newScale;
-        controller.height = newScale;
+        transform.Rotate(Vector3.up * mouseX);      
     }
 }
