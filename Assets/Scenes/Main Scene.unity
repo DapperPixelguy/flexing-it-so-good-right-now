@@ -380,6 +380,7 @@ GameObject:
   - component: {fileID: 456324107}
   - component: {fileID: 456324112}
   - component: {fileID: 456324113}
+  - component: {fileID: 456324114}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -499,7 +500,7 @@ MonoBehaviour:
   moveSpeed: 8
   mouseSensitivity: 2
   gravity: -9.81
-  scaleSpeed: 5
+  controller: {fileID: 0}
 --- !u!114 &456324113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,11 +508,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456324105}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e1d40e99d9cf54192ba8ea33b05c80, type: 3}
+  m_Script: {fileID: 11500000, guid: 5100686d5c92de14e888e0bbf53b98f6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FirstPersonControllerRevised
+  m_EditorClassIdentifier: Assembly-CSharp::RoomSwap
+--- !u!114 &456324114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456324105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 965184269ec6c684891ccae6b400dbc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  targetScale: 0
+  scaleSpeed: 5
 --- !u!1 &625887108
 GameObject:
   m_ObjectHideFlags: 0
