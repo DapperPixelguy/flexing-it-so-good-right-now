@@ -5,9 +5,10 @@ public class FirstPersonController : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float mouseSensitivity = 2f;
-    public float gravity = -9.81f;
+    public float gravity = -20f;
 
     public Vector3 velocity { get; set; }
+    public float jumpStrength = 10f;
 
 
     private float xRotation = 0f;
@@ -35,7 +36,7 @@ public class FirstPersonController : MonoBehaviour
         {
             print(velocity);
             //velocity.y += 10;
-            velocity = new Vector3(velocity.x, 10f, velocity.z);
+            velocity = new Vector3(velocity.x, jumpStrength, velocity.z);
             print(velocity);
         }
 
