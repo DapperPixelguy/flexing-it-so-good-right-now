@@ -6,6 +6,7 @@ public class FirstPersonController : MonoBehaviour
     public float moveSpeed = 5f;
     public float mouseSensitivity = 2f;
     public float gravity = -20f;
+    public bool flipped;
 
     public Vector3 velocity { get; set; }
     public float jumpStrength = 10f;
@@ -14,7 +15,7 @@ public class FirstPersonController : MonoBehaviour
     private float xRotation = 0f;
 
     public CharacterController controller;
-    private Transform cameraTransform;
+    public Transform cameraTransform;
 
     void Start()
     {
@@ -24,6 +25,8 @@ public class FirstPersonController : MonoBehaviour
         cameraTransform.parent = transform; // Attach camera to player
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        gravity = -20f;
+        flipped = false;
 
     }
 
@@ -43,7 +46,7 @@ public class FirstPersonController : MonoBehaviour
         // Player movement
         float moveX = Input.GetAxis("Horizontal") * moveSpeed;
         float moveZ = Input.GetAxis("Vertical") * moveSpeed;
-        Vector3 move = transform.right * moveX + transform.forward * moveZ;
+        Vector3 move = transform.right * (flipped ? -moveX : moveX) + transform.forward * moveZ;
 
         controller.Move(move * Time.deltaTime);
 
@@ -52,7 +55,7 @@ public class FirstPersonController : MonoBehaviour
         if (controller.isGrounded && velocity.y < 0)
         {
             //velocity.y = -2f;
-            velocity = new Vector3(velocity.x, -2f, velocity.z);
+            velocity = new Vector3(velocity.x, flipped ? 2f : -2f, velocity.z);
         }
         //velocity.y += gravity * Time.deltaTime;
         velocity = new Vector3(velocity.x, velocity.y + gravity * Time.deltaTime, velocity.z);
@@ -62,11 +65,12 @@ public class FirstPersonController : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
+
         xRotation -= mouseY * mouseSensitivity;
         xRotation = Mathf.Clamp(xRotation, -80f, 80f);
 
-        cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        cameraTransform.localRotation = Quaternion.Euler(flipped ? -xRotation : xRotation, 0f, flipped ? 180f : 0f);
 
-        transform.Rotate(Vector3.up * mouseX);      
+        transform.Rotate(Vector3.up * (flipped ? - mouseX : mouseX));      
     }
 }

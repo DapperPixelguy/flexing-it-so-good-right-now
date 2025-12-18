@@ -21,6 +21,7 @@ public class ChangeScale : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            print("CASE 1 GRAVITY CHANGE");
             targetScale = Mathf.Clamp(targetScale + 0.5f, 0.5f, 3f);
             movement.moveSpeed = Mathf.Clamp(movement.moveSpeed + 2f, 2f, 12f);            
             movement.jumpStrength = Mathf.Clamp(movement.jumpStrength + 2f, 2f, 10f);
@@ -29,6 +30,7 @@ public class ChangeScale : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            print("CASE 2 GRAVITY CHANGE");
             targetScale = Mathf.Clamp(targetScale - 0.5f, 0.5f, 3f);
             movement.moveSpeed = Mathf.Clamp(movement.moveSpeed - 2f, 2f, 12f);
 

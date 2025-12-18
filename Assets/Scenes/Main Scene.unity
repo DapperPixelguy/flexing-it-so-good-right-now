@@ -381,6 +381,7 @@ GameObject:
   - component: {fileID: 456324112}
   - component: {fileID: 456324113}
   - component: {fileID: 456324114}
+  - component: {fileID: 456324115}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -478,7 +479,7 @@ Transform:
   m_GameObject: {fileID: 456324105}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -62.938084, y: -18.1, z: -12.609633}
+  m_LocalPosition: {x: -62.938084, y: -17.524366, z: -13.758438}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -500,8 +501,10 @@ MonoBehaviour:
   moveSpeed: 8
   mouseSensitivity: 2
   gravity: -9.81
+  flipped: 0
   jumpStrength: 10
   controller: {fileID: 0}
+  cameraTransform: {fileID: 0}
 --- !u!114 &456324113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,6 +531,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   targetScale: 0
   scaleSpeed: 5
+--- !u!114 &456324115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456324105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7733da06aefdcd542aba5f9da1b7f9c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GravityFlip
 --- !u!1 &625887108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,7 +1077,7 @@ Transform:
   m_GameObject: {fileID: 961739749}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.20000091, y: 1.2020006, z: 0.24299993}
+  m_LocalPosition: {x: 0, y: 0.75, z: 0}
   m_LocalScale: {x: 0.55878395, y: 0.5587841, z: 0.55878395}
   m_ConstrainProportionsScale: 0
   m_Children: []
