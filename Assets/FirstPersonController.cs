@@ -6,19 +6,17 @@ public class FirstPersonController : MonoBehaviour
     public float mouseSensitivity = 2f;
     public float gravity = -9.81f;
     public float scaleSpeed = 5f;
+    public Vector3 velocity { get; set; }
 
-
-    private bool clean = false;
-    private float targetScale;
+    public float targetScale;
     private float xRotation = 0f;
 
-    private CharacterController controller;
-    private Vector3 velocity;
+    public CharacterController controller;
     private Transform cameraTransform;
 
     void Start()
     {
-        targetScale = Mathf.Clamp(transform.localScale.x, 0.5f, 5f);
+        targetScale = Mathf.Clamp(transform.localScale.x, 0.5f, 3.5f);
         controller = GetComponent<CharacterController>();
         cameraTransform = Camera.main.transform;
         cameraTransform.position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
@@ -36,7 +34,8 @@ public class FirstPersonController : MonoBehaviour
         if (controller.isGrounded && Input.GetKey(KeyCode.Space))
         {
             print(velocity);
-            velocity.y += 10;
+            //velocity.y += 10;
+            velocity = new Vector3(velocity.x, 10f, velocity.z);
             print(velocity);
         }
 
@@ -51,9 +50,11 @@ public class FirstPersonController : MonoBehaviour
         // Apply gravity
         if (controller.isGrounded && velocity.y < 0)
         {
-            velocity.y = -2f;
+            //velocity.y = -2f;
+            velocity = new Vector3(velocity.x, -2f, velocity.z);
         }
-        velocity.y += gravity * Time.deltaTime;
+        //velocity.y += gravity * Time.deltaTime;
+        velocity = new Vector3(velocity.x, velocity.y + gravity * Time.deltaTime, velocity.z);
         controller.Move(velocity * Time.deltaTime);
 
         // Camera rotation
@@ -66,38 +67,22 @@ public class FirstPersonController : MonoBehaviour
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
         transform.Rotate(Vector3.up * mouseX);
-    
+
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            targetScale += 0.5f;            
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            targetScale -= 0.5f;            
+            targetScale = Mathf.Clamp(targetScale + 0.5f, 0.5f, 3.5f);
+
         }
 
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            Vector3 pos = transform.position;
-            if (clean)
-            {
-                pos.y = -4.173007f;
-                clean = false;
-            }else
-            {
-                pos.y = -18.31867f;
-                clean = true;
-            }
-                // Set Y to exactly 5
-                controller.enabled = false;  // Temporarily disable CharacterController
-            transform.position = pos;    // Move object
-            controller.enabled = true;   // Re-enable CharacterController
-            velocity.y = 0f;             // Reset vertical speed to avoid instant falling
+            targetScale = Mathf.Clamp(targetScale - 0.5f, 0.5f, 3.5f);
         }
 
         float currentScale = transform.localScale.x;
         float newScale = Mathf.Lerp(currentScale, targetScale, scaleSpeed * Time.deltaTime);
+
         transform.localScale = Vector3.one * newScale;
         controller.height = newScale;
     }
