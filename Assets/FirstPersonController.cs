@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -27,7 +28,6 @@ public class FirstPersonController : MonoBehaviour
         Cursor.visible = false;
         gravity = -20f;
         flipped = false;
-
     }
 
     void Update()

@@ -1,16 +1,24 @@
+using System.Collections;
+using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem.XR;
+using static UnityEditor.PlayerSettings;
 
 public class RoomSwap : MonoBehaviour
 {
     private bool clean;
     private FirstPersonController movement;
+    private Stopwatch swapCooldown = new Stopwatch();
+    public Image fadeImage;
+    public float fadeDuration = 0.25f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         clean = true;
         movement = GetComponent<FirstPersonController>();
+        swapCooldown.Start();
     }
 
     // Update is called once per frame
@@ -18,24 +26,51 @@ public class RoomSwap : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.G))
         {
-            Vector3 pos = transform.position;
-            if (clean)
-            {
-                //pos.y = -4.173007f;
-                pos.y += 14.145663f;
-                clean = false;
+            
+            if (swapCooldown.ElapsedMilliseconds < 500) {
+                return;
             }
-            else
-            {
-                //pos.y = -18.31867f;
-                pos.y -= 14.145663f;
-                clean = true;
-            }
-            // Set Y to exactly 5
-            movement.controller.enabled = false;  // Temporarily disable CharacterController
-            transform.position = pos;    // Move object
-            movement.controller.enabled = true;   // Re-enable CharacterController
-            //movement.velocity = new Vector3(movement.velocity.x, 0f, movement.velocity.z);             // Reset vertical speed to avoid instant falling
+            swapCooldown.Restart();
+
+            StartCoroutine(SwapWithFade());
         }
+    }
+    IEnumerator SwapWithFade()
+    {
+
+        yield return StartCoroutine(Fade(0f, 1f));
+
+        Vector3 pos = transform.position;
+
+        if (clean)
+        {
+            pos.y += 14.145663f;
+            clean = false;
+        }
+        else
+        {
+            pos.y -= 14.145663f;
+            clean = true;
+        }
+        movement.controller.enabled = false;
+        transform.position = pos;
+        movement.controller.enabled = true;
+
+        yield return StartCoroutine(Fade(1f, 0f));
+    }
+
+    IEnumerator Fade(float from, float to)
+    {
+        float elapsed = 0f;
+        Color colour = fadeImage.color;
+
+        while (elapsed < fadeDuration) {
+            elapsed += Time.deltaTime;
+            colour.a = Mathf.Lerp(from, to, elapsed / fadeDuration);
+            fadeImage.color = colour;
+            yield return null;
+        }
+        colour.a = to;
+        fadeImage.color = colour;
     }
 }

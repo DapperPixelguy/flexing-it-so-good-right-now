@@ -21,24 +21,46 @@ public class ChangeScale : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            print("CASE 1 GRAVITY CHANGE");
+
             targetScale = Mathf.Clamp(targetScale + 0.5f, 0.5f, 3f);
             movement.moveSpeed = Mathf.Clamp(movement.moveSpeed + 2f, 2f, 12f);            
             movement.jumpStrength = Mathf.Clamp(movement.jumpStrength + 2f, 2f, 10f);
-            movement.gravity = Mathf.Clamp(movement.gravity - 4f, -28f, -8f);
+
+            // If gravity is normal
+            if (!movement.flipped)
+            {
+                movement.gravity = Mathf.Clamp(movement.gravity - 4f, -28f, -8f);
+            }
+
+            // If gravity is flipped
+            if (movement.flipped)
+            {
+                movement.gravity = Mathf.Clamp(movement.gravity + 4f, 8f, 28f);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            print("CASE 2 GRAVITY CHANGE");
+
             targetScale = Mathf.Clamp(targetScale - 0.5f, 0.5f, 3f);
             movement.moveSpeed = Mathf.Clamp(movement.moveSpeed - 2f, 2f, 12f);
 
             if (targetScale <= 2f)
             {
                 movement.jumpStrength = Mathf.Clamp(movement.jumpStrength - 2f, 4f, 10f);
-            }              
-            movement.gravity = Mathf.Clamp(movement.gravity + 4f, -28f, -8f);
+            }
+
+            if (!movement.flipped)
+            {
+                movement.gravity = Mathf.Clamp(movement.gravity + 4f, -28f, -8f);
+            }
+
+            if (movement.flipped)
+            {
+                print(movement.gravity - 4f);
+                movement.gravity = Mathf.Clamp(movement.gravity - 4f, 8f, 28f);
+            }
+                
         }
 
         float currentScale = transform.localScale.x;

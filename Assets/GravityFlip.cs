@@ -20,8 +20,8 @@ public class GravityFlip : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             movement.flipped = !movement.flipped;
-            print("CASE 3 GRAVITY CHANGE");
             movement.gravity = -movement.gravity;
+            movement.jumpStrength = -movement.jumpStrength;
             movement.cameraTransform.position = new Vector3(transform.position.x, transform.position.y + (movement.flipped ? -0.75f * scale.targetScale : 0.75f * scale.targetScale), transform.position.z);
             movement.velocity = new Vector3(
                     movement.velocity.x,
