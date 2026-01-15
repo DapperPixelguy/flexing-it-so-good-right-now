@@ -1,5 +1,7 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.XR;
 
 public class ChangeScale : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class ChangeScale : MonoBehaviour
     private FirstPersonController movement;
     public float targetScale;
     public float scaleSpeed = 5f;
+    private bool yPressedLastFrame = false;
+    private bool xPressedLastFrame = false;
 
     void Start()
     {
@@ -19,7 +23,12 @@ public class ChangeScale : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+
+        InputDevice leftController = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+
+
+        bool yPressed = false;
+        if ((Input.GetKeyDown(KeyCode.E)) || (leftController.TryGetFeatureValue(CommonUsages.secondaryButton, out yPressed) && yPressed && !yPressedLastFrame))
         {
 
             targetScale = Mathf.Clamp(targetScale + 0.5f, 0.5f, 3f);
@@ -38,8 +47,10 @@ public class ChangeScale : MonoBehaviour
                 movement.gravity = Mathf.Clamp(movement.gravity + 4f, 8f, 28f);
             }
         }
+        yPressedLastFrame = yPressed;
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        bool xPressed = false;
+        if ((Input.GetKeyDown(KeyCode.Q))  || (leftController.TryGetFeatureValue(CommonUsages.primaryButton, out xPressed) && xPressed && !xPressedLastFrame))
         {
 
             targetScale = Mathf.Clamp(targetScale - 0.5f, 0.5f, 3f);
@@ -62,6 +73,7 @@ public class ChangeScale : MonoBehaviour
             }
                 
         }
+        xPressedLastFrame = xPressed;
 
         float currentScale = transform.localScale.x;
         float newScale = Mathf.Lerp(currentScale, targetScale, scaleSpeed * Time.deltaTime);

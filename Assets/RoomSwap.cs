@@ -3,6 +3,7 @@ using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.XR;
 using static UnityEditor.PlayerSettings;
 
 public class RoomSwap : MonoBehaviour
@@ -12,6 +13,7 @@ public class RoomSwap : MonoBehaviour
     private Stopwatch swapCooldown = new Stopwatch();
     public Image fadeImage;
     public float fadeDuration = 0.25f;
+    //private InputDevice leftController = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,6 +26,23 @@ public class RoomSwap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        // VR controls - If B pressed, swap rooms. FIX THE BLACK FADE NOT APPEARING IN VR!
+        InputDevice rightController = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+        bool bPressed = false;
+        if (rightController.TryGetFeatureValue(CommonUsages.secondaryButton, out bPressed) && bPressed)
+        {
+            if (swapCooldown.ElapsedMilliseconds < 500)
+            {
+                return;
+            }
+            swapCooldown.Restart();
+
+            StartCoroutine(SwapWithFade());
+        }
+
+
+        // Flatscreen controls - If G pressed, swap rooms.
         if (Input.GetKeyDown(KeyCode.G))
         {
             
