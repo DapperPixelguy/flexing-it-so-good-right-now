@@ -9,12 +9,14 @@ public class VRToggleManager : MonoBehaviour
     public GameObject xrOrigin;
 
     public bool VRActive;
+    public GameObject player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         desktopCamera.SetActive(true);
         xrOrigin.SetActive(false);
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -48,6 +50,7 @@ public class VRToggleManager : MonoBehaviour
         xrOrigin.SetActive(true);
 
         VRActive = true;
+        player.GetComponent<FirstPersonController>().enabled = false;
         yield return null;
 
     }
