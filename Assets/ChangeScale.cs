@@ -28,7 +28,7 @@ public class ChangeScale : MonoBehaviour
 
 
         bool yPressed = false;
-        if ((Input.GetKeyDown(KeyCode.E)) || (leftController.TryGetFeatureValue(CommonUsages.secondaryButton, out yPressed) && yPressed && !yPressedLastFrame))
+        if ((Input.GetKeyDown(KeyCode.E)))
         {
 
             targetScale = Mathf.Clamp(targetScale + 0.5f, 0.5f, 3f);
@@ -50,7 +50,7 @@ public class ChangeScale : MonoBehaviour
         yPressedLastFrame = yPressed;
 
         bool xPressed = false;
-        if ((Input.GetKeyDown(KeyCode.Q))  || (leftController.TryGetFeatureValue(CommonUsages.primaryButton, out xPressed) && xPressed && !xPressedLastFrame))
+        if ((Input.GetKeyDown(KeyCode.Q)))
         {
 
             targetScale = Mathf.Clamp(targetScale - 0.5f, 0.5f, 3f);
