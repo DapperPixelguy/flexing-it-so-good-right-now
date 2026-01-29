@@ -12,6 +12,7 @@ public class RoomSwap : MonoBehaviour
     private FirstPersonController movement;
     private Stopwatch swapCooldown = new Stopwatch();
     public Image fadeImage;
+    public Image VRFadeImage;
     public float fadeDuration = 0.25f;
     //private InputDevice leftController = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
 
