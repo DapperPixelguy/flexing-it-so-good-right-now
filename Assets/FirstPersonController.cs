@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -72,5 +73,11 @@ public class FirstPersonController : MonoBehaviour
         cameraTransform.localRotation = Quaternion.Euler(flipped ? -xRotation : xRotation, 0f, flipped ? 180f : 0f);
 
         transform.Rotate(Vector3.up * (flipped ? - mouseX : mouseX));      
+    }
+
+    public void ResetMouseLook()
+    {
+        xRotation = 0f;
+        cameraTransform.localRotation = quaternion.identity;
     }
 }
