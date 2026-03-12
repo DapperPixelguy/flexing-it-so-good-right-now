@@ -23,8 +23,11 @@ public class ChangeScale : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        InputDevice leftController = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+        if (movement.locked)
+        {
+            return;
+        }
+        //InputDevice leftController = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
 
 
         bool yPressed = false;

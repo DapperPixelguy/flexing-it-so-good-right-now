@@ -27,7 +27,10 @@ public class RoomSwap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (movement.locked)
+        {
+            return;
+        }
         // VR controls - If B pressed, swap rooms. FIX THE BLACK FADE NOT APPEARING IN VR!
         InputDevice rightController = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
         bool bPressed = false;

@@ -9,6 +9,7 @@ public class FirstPersonController : MonoBehaviour
     public float mouseSensitivity = 2f;
     public float gravity = -20f;
     public bool flipped;
+    public bool locked = false;
 
     public Vector3 velocity { get; set; }
     public float jumpStrength = 10f;
@@ -33,6 +34,10 @@ public class FirstPersonController : MonoBehaviour
 
     void Update()
     {
+        if (locked)
+        {
+            return;
+        }
       
         // Allow jumping
 

@@ -17,6 +17,10 @@ public class GravityFlip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (movement.locked)
+        {
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.R))
         {
             movement.flipped = !movement.flipped;
