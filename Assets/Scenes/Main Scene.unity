@@ -1226,6 +1226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5100686d5c92de14e888e0bbf53b98f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomSwap
+  clean: 0
   fadeImage: {fileID: 942237134}
   VRFadeImage: {fileID: 952681679}
   fadeDuration: 0.25
@@ -1672,7 +1673,7 @@ Transform:
   m_GameObject: {fileID: 681978749}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.041695, y: 1.97, z: 7.708603}
+  m_LocalPosition: {x: 9.627396, y: 13.000001, z: 228.3286}
   m_LocalScale: {x: 6.752765, y: 9.868323, z: 1.0111592}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7818,7 +7819,7 @@ RectTransform:
   m_Father: {fileID: 1572162533}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8244,7 +8245,7 @@ RectTransform:
   m_Father: {fileID: 1111427474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9884,7 +9885,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1951653913}
   m_Layer: 0
-  m_Name: Library Teleporter (1)
+  m_Name: Kay Teleporter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -8,7 +8,7 @@ using static UnityEditor.PlayerSettings;
 
 public class RoomSwap : MonoBehaviour
 {
-    private bool clean;
+    public bool clean;
     private FirstPersonController movement;
     private Stopwatch swapCooldown = new Stopwatch();
     public Image fadeImage;
