@@ -9,6 +9,8 @@ using static UnityEditor.PlayerSettings;
 public class RoomSwap : MonoBehaviour
 {
     public bool clean;
+    public bool swappable;
+    public bool swapping;
     private FirstPersonController movement;
     private Stopwatch swapCooldown = new Stopwatch();
     public Image fadeImage;
@@ -20,6 +22,7 @@ public class RoomSwap : MonoBehaviour
     void Start()
     {
         clean = true;
+        swappable = true;
         movement = GetComponent<FirstPersonController>();
         swapCooldown.Start();
     }
@@ -27,7 +30,7 @@ public class RoomSwap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (movement.locked)
+        if (movement.locked || !swappable)
         {
             return;
         }
@@ -60,8 +63,9 @@ public class RoomSwap : MonoBehaviour
     }
     IEnumerator SwapWithFade()
     {
-
+        swapping = true;
         yield return StartCoroutine(Fade(0f, 1f));
+        swapping = false;
 
         Vector3 pos = transform.position;
 

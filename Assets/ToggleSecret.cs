@@ -9,7 +9,10 @@ public class ToggleSecret : MonoBehaviour
     {
         display = GetComponent<MeshRenderer>();
         particle = display.GetComponent<ParticleSystem>();
-        particle.Stop();
+        if (particle != null)
+        {
+            particle.Stop();
+        }
         secretActive = false;
 
     }
@@ -23,10 +26,16 @@ public class ToggleSecret : MonoBehaviour
             display.enabled = secretActive ? false : true;
             if (secretActive)
             {
-                particle.Stop();
+                if (particle != null)
+                {
+                    particle.Stop();
+                }
             } else
             {
-                particle.Play();
+                if (particle != null)
+                {
+                    particle.Play();
+                }
             }
                 secretActive = !secretActive;
         }
