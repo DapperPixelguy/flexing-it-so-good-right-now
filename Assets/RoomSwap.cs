@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.XR;
-using static UnityEditor.PlayerSettings;
 
 public class RoomSwap : MonoBehaviour
 {
